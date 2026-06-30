@@ -9,9 +9,7 @@ export class InventoryPage {
 
     constructor(page: Page) {
         this.page = page;
-        // The common container for every single item card on the page
         this.inventoryItems = page.locator('.inventory_item');
-        // The global shopping cart badge icon link
         this.cartButton = page.locator('.shopping_cart_link');
     }
 
@@ -32,6 +30,26 @@ export class InventoryPage {
 
     async goToCart() {
         await this.cartButton.click();
+    }
+
+    async getAllProductTitles(): Promise<string[]> {
+        const cards = await this.inventoryItems.all();
+        const titles: string[] = [];
+        for (const card of cards) {
+            const title = await card.locator('.inventory_item_name').innerText();
+            titles.push(title.trim());
+        }
+        return titles;
+    }
+
+    async getAllProductPrices(): Promise<number[]> {
+        const cards = await this.inventoryItems.all();
+        const prices: number[] = [];
+        for (const card of cards) {
+            const priceRaw = await card.locator('.inventory_item_price').innerText();
+            prices.push(parseFloat(priceRaw.replace('$', '')));
+        }
+        return prices;
     }
 
     getPage() {
