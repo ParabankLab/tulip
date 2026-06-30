@@ -18,8 +18,9 @@ export class SauceDemoUtils {
     }
 
     public static getTestData() {
-        const loginData = JSON.parse(fs.readFileSync(path.resolve("tulip", '../testdata/testData.json'), 'utf-8'));
-        return loginData;
+       // process.cwd() guarantees it looks from your root directory down into testdata/
+        const dataPath = path.resolve(process.cwd(), 'testdata', 'testData.json');
+        return JSON.parse(fs.readFileSync(dataPath, 'utf-8'));
     }
 
   
