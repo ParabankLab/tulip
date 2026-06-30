@@ -4,5 +4,12 @@
             "name": "standard_user",
             "password": "secret_sauce"
         }
+    ],
+    "checkout": [
+        {
+            "firstname": "John",
+            "lastname": "Doe",
+            "postalcode": "10005"
+        }
     ]
 }
