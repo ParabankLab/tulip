@@ -1,4 +1,5 @@
 import { Locator, Page } from '@playwright/test';
+import { SauceDemoUtils } from '../utils/SauceDemoUtils.js';
 
 export class LoginPage {
     private readonly page: Page;
@@ -14,14 +15,14 @@ export class LoginPage {
     }
 
     async login() {
-        await this.userName.fill("standard_user");
-        await this.passWord.fill("secret_sauce");
+        await this.userName.fill(SauceDemoUtils.getTestData().user[0].name);
+        await this.passWord.fill(SauceDemoUtils.getTestData().user[0].password);
         await this.loginButton.click();
     }
 
     async navigate() {
-        await this.page.goto("https://www.saucedemo.com/");
-        await this.page.waitForURL("https://www.saucedemo.com/");
+        await this.page.goto(SauceDemoUtils.BASE_URL);
+        await this.page.waitForURL(SauceDemoUtils.BASE_URL);
     }
 
 

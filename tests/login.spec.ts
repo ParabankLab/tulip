@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
+import { LoginPage } from '../pages/LoginPage.js';
+import { Endpoints, SauceDemoUtils } from '../utils/SauceDemoUtils.js';
 
 
 let loginPage: LoginPage;
@@ -15,7 +16,7 @@ test.describe('Login To SauceDemo', () => {
     //Act
     await loginPage.login();
     // Assert
-    await expect(loginPage.getPage()).toHaveURL(/.*inventory.html/);
+    await expect(loginPage.getPage()).toHaveURL(SauceDemoUtils.buildUrl(Endpoints.INVENTORY));
 
   });
 
