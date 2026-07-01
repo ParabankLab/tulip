@@ -16,9 +16,9 @@ test.beforeEach('Open SauceDemo Site', async ({ page }) => {
     await loginPage.navigate();
 });
 
-test.describe('Modifying Chart At SauceDemo', () => {
+test.describe('Modifying Cart At SauceDemo', () => {
 
-    test('TEST-02 - Modifying Chart At Saucedemo', async () => {
+    test('TEST-02 - Modifying Cart At Saucedemo', async () => {
         await loginPage.login();
         await expect(loginPage.getPage()).toHaveURL(SauceDemoUtils.buildUrl(Endpoints.INVENTORY));
 
