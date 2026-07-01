@@ -47,10 +47,7 @@ test.describe('Successful Purchase At SauceDemo', () => {
         await expect(loginPage.getPage()).toHaveURL(SauceDemoUtils.buildUrl(Endpoints.CHECKOUT_STEP_ONE));
 
         //Act
-        await checkOutStepOnePage.fillFirstName(SauceDemoUtils.getTestData().checkout[0].firstname);
-        await checkOutStepOnePage.fillLastName(SauceDemoUtils.getTestData().checkout[0].lastname);
-        await checkOutStepOnePage.fillPostalCode(SauceDemoUtils.getTestData().checkout[0].postalcode);
-        await checkOutStepOnePage.clickContinueButton();
+        await checkOutStepOnePage.fillOutAndContinue();
         //Assert 
         await expect(loginPage.getPage()).toHaveURL(SauceDemoUtils.buildUrl(Endpoints.CHECKOUT_STEP_TWO));
 

@@ -1,4 +1,5 @@
 import { Locator, Page } from '@playwright/test';
+import { SauceDemoUtils } from '../utils/SauceDemoUtils.js';
 
 export class CheckOutStepOnePage {
 
@@ -32,9 +33,19 @@ export class CheckOutStepOnePage {
         await this.continueButton.click();
     }
 
-    getPage(){
+    async fillOutAndContinue() {
+        await this.firstName.fill(SauceDemoUtils.getTestData().checkout[0].firstname);
+        await this.lastName.fill(SauceDemoUtils.getTestData().checkout[0].lastname);
+        await this.postalCode.fill(SauceDemoUtils.getTestData().checkout[0].postalcode);
+        await this.continueButton.click();
+    }
+
+
+    getPage() {
         return this.page;
     }
+
+
 
 
 }
