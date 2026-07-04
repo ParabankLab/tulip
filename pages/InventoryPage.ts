@@ -32,6 +32,10 @@ export class InventoryPage {
         await this.cartButton.click();
     }
 
+    async sortItems(sortOrder: string) {
+        await this.page.selectOption('.product_sort_container', sortOrder);
+    }
+
     async getAllProductTitles(): Promise<string[]> {
         const cards = await this.inventoryItems.all();
         const titles: string[] = [];

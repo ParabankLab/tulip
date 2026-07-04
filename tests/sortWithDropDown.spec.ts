@@ -20,25 +20,25 @@ test.describe('Sort Items on Inventory Page', () => {
         await expect(loginPage.getPage()).toHaveURL(SauceDemoUtils.buildUrl(Endpoints.INVENTORY));
 
         // 1. Validate Alphabetical (A to Z)
-        await page.selectOption('.product_sort_container', 'az');
+        await inventoryPage.sortItems('az');
         const actualAZ = await inventoryPage.getAllProductTitles();
         const expectedAZ = [...actualAZ].sort((a, b) => a.localeCompare(b));
         expect(actualAZ).toEqual(expectedAZ);
 
         // 2. Validate Reverse Alphabetical (Z to A)
-        await page.selectOption('.product_sort_container', 'za');
+        await inventoryPage.sortItems('za');
         const actualZA = await inventoryPage.getAllProductTitles();
         const expectedZA = [...actualZA].sort((a, b) => b.localeCompare(a));
         expect(actualZA).toEqual(expectedZA);
 
         // 3. Validate Price (Low to High)
-        await page.selectOption('.product_sort_container', 'lohi');
+        await inventoryPage.sortItems('lohi');
         const actualPriceLohi = await inventoryPage.getAllProductPrices();
         const expectedPriceLohi = [...actualPriceLohi].sort((a, b) => a - b);
         expect(actualPriceLohi).toEqual(expectedPriceLohi);
 
         // 4. Validate Price (High to Low)
-        await page.selectOption('.product_sort_container', 'hilo');
+        await inventoryPage.sortItems('hilo');
         const actualPriceHilo = await inventoryPage.getAllProductPrices();
         const expectedPriceHilo = [...actualPriceHilo].sort((a, b) => b - a);
         expect(actualPriceHilo).toEqual(expectedPriceHilo);
